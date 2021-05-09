@@ -1,0 +1,121 @@
+
+
+/*Defining variables and values*/
+
+$colors:#e2eff1 #8ccff7 #4e89ae #43658b #ed6663 #ffa372 #444 #000; 
+$pixels: 5px 40px 50px 70px 80px 90px 100px 200px 300px;
+
+
+/*Mixin*/
+@mixin center {
+  justify-content: center;
+}
+
+@mixin vertical {
+    @media screen and (min-width: 0px) and (max-width:620px){
+          flex-direction: column; //makes circles align veritcally / stack to one another
+        }
+}
+
+@mixin pointer {
+        //change mouse to pointer
+        cursor: pointer;
+        display: inline-block; 
+
+        &:hover { //change color when hovered
+            background-color: nth($colors, 7);
+            color: nth($colors, 8);
+            }
+}
+
+@mixin center {
+        //to center items
+        justify-content:center;
+        align-items:center;
+        background-position:center;   
+}
+
+@mixin responsive {
+    @media screen and (max-width: 480px){
+        background-image: url("https://via.placeholder.com/200");
+        height: nth($pixels, 8);
+    }    
+
+    @media screen and (min-width:481px) and (max-width:800px){
+        background-image: url("https://via.placeholder.com/300");
+        height: nth($pixels, 9); }
+}
+
+/*Removes default styling*/
+* {
+    margin:0;
+    padding:0;
+}
+
+body {
+    background-color: nth($colors,1); //calls the 1st position in $color
+}
+
+      
+header {
+    background:url(https://via.placeholder.com/400); //no need to put quotation marks
+    background-color: nth($colors,2); //calls the 2nd position in $color
+    background-repeat: no-repeat;
+    height: 400px;
+    @include center;
+    @include responsive;
+}
+
+.container {
+    margin: 50px 0;
+}
+
+.rows .item {
+    display: block;
+    width: 100%;
+    height: nth($pixels,2);    
+}
+
+.circles {
+    display:flex;
+    @include center;
+    @include vertical; 
+}
+
+.circles .item {
+    border-radius: 50%;
+    margin: nth($pixels,1);
+}
+
+
+.item-1{
+    width: nth($pixels,4);
+    height: nth($pixels,4);
+    background-color: nth($colors,3); 
+    @include pointer;
+}
+
+.item-2{
+    width: nth($pixels,5);
+    height: nth($pixels,5);
+    background-color: nth($colors,4); 
+    @include pointer;
+}
+.item-3{
+    width: nth($pixels,6);
+    height: nth($pixels,6);
+    background-color: nth($colors,5); 
+    @include pointer;
+}
+.item-4{
+    width: nth($pixels,7);
+    height: nth($pixels,7);
+    background-color: nth($colors,6); 
+    @include pointer;
+}
+
+
+    footer {
+    background-color: nth($colors,2); //calls the 2nd position in $color
+    height: nth($pixels,3);
+}
